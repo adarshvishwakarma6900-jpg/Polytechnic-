@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Polytechnic Student Portal</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#0b1020;
+    color:white;
+    min-height:100vh;
+}
+
+/* ================= REGISTRATION ================= */
+
+#registration{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:
+    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.8)),
+    url("1000143307.jpg") center/cover;
+}
+
+.register-box{
+    width:100%;
+    max-width:600px;
+    padding:25px;
+    border-radius:20px;
+    background:rgba(15,20,40,.95);
+    box-shadow:0 0 30px rgba(0,0,0,.6);
+}
+
+.register-box h1{
+    text-align:center;
+    margin-bottom:8px;
+    color:#64b5f6;
+}
+
+.register-box p{
+    text-align:center;
+    margin-bottom:20px;
+    color:#ccc;
+}
+
+.photo-box{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.photo-preview{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #2196f3;
+    background:#222;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:12px;
+    margin:7px 0 12px;
+    border:none;
+    outline:none;
+    border-radius:8px;
+    background:#20283d;
+    color:white;
+}
+
+textarea{
+    min-height:80px;
+    resize:vertical;
+}
+
+label{
+    color:#ddd;
+    font-size:14px;
+}
+
+.main-btn{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:9px;
+    background:#1976d2;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:8px;
+}
+
+.main-btn:hover{
+    background:#2196f3;
+}
+
+/* ================= PORTAL ================= */
+
+#portal{
+    display:none;
+    min-height:100vh;
+    padding:25px 15px;
+    background:
+    linear-gradient(rgba(5,10,25,.85),rgba(5,10,25,.95)),
+    url("1000143307.jpg") center/cover fixed;
+}
+
+.portal-header{
+    max-width:1000px;
+    margin:auto;
+    text-align:center;
+    padding:25px;
+}
+
+.portal-header h1{
+    color:#64b5f6;
+    margin-bottom:8px;
+}
+
+.student-card{
+    max-width:700px;
+    margin:10px auto 25px;
+    background:#151d32;
+    padding:18px;
+    border-radius:15px;
+    text-align:left;
+}
+
+.student-card p{
+    margin:6px 0;
+}
+
+.portal-buttons{
+    max-width:700px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.portal-btn{
+    padding:18px 10px;
+    border:none;
+    border-radius:12px;
+    background:#17243d;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    border:1px solid #29466f;
+}
+
+.portal-btn:hover{
+    background:#1e4d82;
+}
+
+/* ================= TEST PAGE ================= */
+
+#testPage{
+    display:none;
+    min-height:100vh;
+    background:#f4f6f8;
+    color:#222;
+}
+
+.test-header{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:#102a43;
+    color:white;
+    padding:12px;
+}
+
+.test-header-inner{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.timer{
+    background:#d32f2f;
+    padding:9px 14px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.progress{
+    font-size:14px;
+}
+
+.test-container{
+    max-width:1100px;
+    margin:auto;
+    padding:15px;
+}
+
+.question-box{
+    background:white;
+    border-radius:14px;
+    padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.12);
+}
+
+.subject-name{
+    color:#1565c0;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.question-number{
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.question-text{
+    font-size:18px;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+.option{
+    display:block;
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    text-align:left;
+    border:2px solid #ddd;
+    border-radius:10px;
+    background:#fafafa;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.option:hover{
+    background:#e3f2fd;
+}
+
+.option.selected{
+    background:#bbdefb;
+    border-color:#1976d2;
+}
+
+.controls{
+    display:flex;
+    gap:10px;
+    margin-top:18px;
+}
+
+.control-btn{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    background:#1565c0;
+    color:white;
+}
+
+.control-btn.submit{
+    background:#2e7d32;
+}
+
+/* ================= QUESTION GRID ================= */
+
+.grid-box{
+    margin-top:20px;
+    background:white;
+    padding:15px;
+    border-radius:14px;
+}
+
+.grid-title{
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.question-grid{
+    display:grid;
+    grid-template-columns:repeat(10,1fr);
+    gap:6px;
+}
+
+.q-btn{
+    padding:8px 2px;
+    border:none;
+    border-radius:6px;
+    background:#eeeeee;
+    color:#222;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* Answered */
+.q-btn.done{
+    background:#81c784;
+    color:white;
+}
+
+/* Visited but unanswered */
+.q-btn.visited{
+    background:#fbc02d;
+    color:#222;
+}
+
+/* Current */
+.q-btn.current{
+    background:#1565c0;
+    color:white;
+}
+
+/* Legend */
+
+.legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:14px;
+    font-size:13px;
+}
+
+.legend-item{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.legend-box{
+    width:17px;
+    height:17px;
+    border-radius:4px;
+    display:inline-block;
+}
+
+.legend-gray{
+    background:#eee;
+    border:1px solid #bbb;
+}
+
+.legend-blue{
+    background:#1565c0;
+}
+
+.legend-yellow{
+    background:#fbc02d;
+}
+
+.legend-green{
+    background:#81c784;
+}
+
+/* ================= RESULT ================= */
+
+#resultPage{
+    display:none;
+    min-height:100vh;
+    padding:25px 15px;
+    background:#0b1020;
+}
+
+.result-box{
+    max-width:800px;
+    margin:auto;
+    background:#151d32;
+    padding:25px;
+    border-radius:18px;
+    text-align:center;
+}
+
+.result-box h1{
+    color:#64b5f6;
+    margin-bottom:20px;
+}
+
+.score{
+    font-size:45px;
+    font-weight:bold;
+    color:#81c784;
+    margin:15px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin:20px 0;
+}
+
+.stat{
+    background:#202a42;
+    padding:15px;
+    border-radius:10px;
+}
+
+.stat b{
+    display:block;
+    font-size:24px;
+    margin-bottom:5px;
+}
+
+/* ================= SOLUTIONS ================= */
+
+#solutionsPage{
+    display:none;
+    min-height:100vh;
+    padding:20px 15px;
+    background:#f4f6f8;
+    color:#222;
+}
+
+.solutions-container{
+    max-width:1000px;
+    margin:auto;
+}
+
+.solution-card{
+    background:white;
+    padding:18px;
+    margin-bottom:12px;
+    border-radius:12px;
+    box-shadow:0 2px 7px rgba(0,0,0,.1);
+}
+
+.solution-card h3{
+    color:#1565c0;
+    margin-bottom:8px;
+}
+
+.correct-answer{
+    color:#2e7d32;
+    font-weight:bold;
+    margin:8px 0;
+}
+
+.solution-text{
+    color:#555;
+    line-height:1.5;
+}
+
+.back-btn{
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:#1565c0;
+    color:white;
+    cursor:pointer;
+    margin-bottom:15px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+    .portal-buttons{
+        grid-template-columns:1fr;
+    }
+
+    .question-grid{
+        grid-template-columns:repeat(5,1fr);
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .test-header-inner{
+        flex-direction:column;
+    }
+
+    .question-text{
+        font-size:16px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     REGISTRATION
+===================================================== -->
+
+<section id="registration">
+
+<div class="register-box">
+
+<h1>Polytechnic Student Portal</h1>
+
+<p>Student Registration</p>
+
+<div class="photo-box">
+
+<img
+id="photoPreview"
+class="photo-preview"
+src=""
+alt="Photo"
+>
+
+<br><br>
+
+<input
+type="file"
+id="photo"
+accept="image/*"
+onchange="previewPhoto(event)"
+>
+
+</div>
+
+
+<label>Web Code</label>
+
+<input
+type="text"
+id="webCode"
+placeholder="Enter Web Code"
+>
+
+
+<label>Student Name</label>
+
+<input
+type="text"
+id="studentName"
+placeholder="Full Name"
+>
+
+
+<label>Phone Number</label>
+
+<input
+type="tel"
+id="studentPhone"
+placeholder="Phone Number"
+>
+
+
+<label>Email</label>
+
+<input
+type="email"
+id="studentEmail"
+placeholder="Email"
+>
+
+
+<label>Gender</label>
+
+<select id="gender">
+
+<option value="">Select Gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+
+</select>
+
+
+<label>Date of Birth</label>
+
+<input
+type="date"
+id="dob"
+>
+
+
+<label>Age</label>
+
+<input
+type="number"
+id="age"
+placeholder="Age"
+>
+
+
+<label>Pincode</label>
+
+<input
+type="number"
+id="pincode"
+placeholder="Pincode"
+>
+
+
+<label>Address</label>
+
+<textarea
+id="address"
+placeholder="Full Address"
+></textarea>
+
+
+<button
+class="main-btn"
+onclick="registerStudent()"
+>
+Enter Student Portal
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PORTAL
+===================================================== -->
+
+<section id="portal">
+
+<div class="portal-header">
+
+<h1>🎓 Polytechnic Student Portal</h1>
+
+<p>Welcome to your preparation portal</p>
+
+</div>
+
+
+<div class="student-card">
+
+<p>
+<b>Name:</b>
+<span id="displayName"></span>
+</p>
+
+<p>
+<b>Phone:</b>
+<span id="displayPhone"></span>
+</p>
+
+<p>
+<b>Email:</b>
+<span id="displayEmail"></span>
+</p>
+
+<p>
+<b>Gender:</b>
+<span id="displayGender"></span>
+</p>
+
+</div>
+
+
+<div class="portal-buttons">
+
+<button
+class="portal-btn"
+onclick="startMockTest()"
+>
+📝 Start Mock Test
+</button>
+
+<button
+class="portal-btn"
+onclick="showComingSoon('Practice')"
+>
+📚 Practice
+</button>
+
+<button
+class="portal-btn"
+onclick="showComingSoon('Chemistry Chapters')"
+>
+🧪 Chemistry Chapters
+</button>
+
+<button
+class="portal-btn"
+onclick="showComingSoon('Physics Chapters')"
+>
+⚡ Physics Chapters
+</button>
+
+<button
+class="portal-btn"
+onclick="showComingSoon('Math Chapters')"
+>
+📐 Math Chapters
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     MOCK TEST
+===================================================== -->
+
+<section id="testPage">
+
+<div class="test-header">
+
+<div class="test-header-inner">
+
+<div>
+
+<b>Polytechnic Mock Test</b>
+
+<div
+class="progress"
+id="progressText"
+>
+Question 1 / 100
+</div>
+
+</div>
+
+<div
+class="timer"
+id="timer"
+>
+02:00:00
+</div>
+
+</div>
+
+</div>
+
+
+<div class="test-container">
+
+<div class="question-box">
+
+<div
+class="subject-name"
+id="subjectName"
+>
+Mathematics
+</div>
+
+<div
+class="question-number"
+id="questionNumber"
+>
+Question 1
+</div>
+
+<div
+class="question-text"
+id="questionText"
+>
+Question
+</div>
+
+<div id="options"></div>
+
+
+<div class="controls">
+
+<button
+class="control-btn"
+onclick="previousQuestion()"
+>
+← Previous
+</button>
+
+<button
+class="control-btn"
+onclick="nextQuestion()"
+>
+Next →
+</button>
+
+<button
+class="control-btn submit"
+onclick="submitTest()"
+>
+Submit
+</button>
+
+</div>
+
+</div>
+
+
+<!-- Question Grid -->
+
+<div class="grid-box">
+
+<div class="grid-title">
+Question Navigation
+</div>
+
+
+<div class="legend">
+
+<div class="legend-item">
+
+<span class="legend-box legend-gray"></span>
+
+Not Visited
+
+</div>
+
+
+<div class="legend-item">
+
+<span class="legend-box legend-blue"></span>
+
+Current
+
+</div>
+
+
+<div class="legend-item">
+
+<span class="legend-box legend-yellow"></span>
+
+Visited / Unanswered
+
+</div>
+
+
+<div class="legend-item">
+
+<span class="legend-box legend-green"></span>
+
+Answered
+
+</div>
+
+</div>
+
+
+<div
+class="question-grid"
+id="questionGrid"
+></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     RESULT
+===================================================== -->
+
+<section id="resultPage">
+
+<div class="result-box">
+
+<h1>🎯 Mock Test Result</h1>
+
+<div
+class="score"
+id="finalScore"
+>
+0 / 100
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<b id="correctCount">
+0
+</b>
+
+Correct
+
+</div>
+
+
+<div class="stat">
+
+<b id="wrongCount">
+0
+</b>
+
+Wrong
+
+</div>
+
+
+<div class="stat">
+
+<b id="unattemptedCount">
+0
+</b>
+
+Unattempted
+
+</div>
+
+</div>
+
+
+<p id="percentageText">
+Percentage: 0%
+</p>
+
+
+<br>
+
+
+<button
+class="main-btn"
+onclick="showSolutions()"
+>
+📖 Solved Questions
+</button>
+
+
+<button
+class="main-btn"
+onclick="backToPortal()"
+>
+🏠 Back To Portal
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     SOLUTIONS
+===================================================== -->
+
+<section id="solutionsPage">
+
+<div class="solutions-container">
+
+<button
+class="back-btn"
+onclick="backToResult()"
+>
+← Back To Result
+</button>
+
+<h1 style="margin-bottom:15px;">
+📖 Solved Questions
+</h1>
+
+<div id="solutionsContainer"></div>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* =====================================================
+   STUDENT REGISTRATION
+===================================================== */
+
+const correctWebCode = "Adityavishwakarma771";
+
+
+function previewPhoto(event){
+
+    const file =
+        event.target.files[0];
+
+    if(!file) return;
+
+    const reader =
+        new FileReader();
+
+    reader.onload = function(){
+
+        document.getElementById(
+            "photoPreview"
+        ).src = reader.result;
+
+    };
+
+    reader.readAsDataURL(file);
+}
+
+
+function registerStudent(){
+
+    const webCode =
+        document.getElementById("webCode").value.trim();
+
+    if(webCode !== correctWebCode){
+
+        alert("Incorrect Web Code!");
+
+        return;
+    }
+
+
+    const name =
+        document.getElementById("studentName").value.trim();
+
+    const phone =
+        document.getElementById("studentPhone").value.trim();
+
+    const email =
+        document.getElementById("studentEmail").value.trim();
+
+    const gender =
+        document.getElementById("gender").value;
+
+
+    if(
+        !name ||
+        !phone ||
+        !email ||
+        !gender
+    ){
+
+        alert("Please fill all required details.");
+
+        return;
+    }
+
+
+    document.getElementById(
+        "displayName"
+    ).innerText = name;
+
+    document.getElementById(
+        "displayPhone"
+    ).innerText = phone;
+
+    document.getElementById(
+        "displayEmail"
+    ).innerText = email;
+
+    document.getElementById(
+        "displayGender"
+    ).innerText = gender;
+
+
+    document.getElementById(
+        "registration"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "portal"
+    ).style.display = "block";
+}
+
+
+/* =====================================================
+   QUESTIONS
+===================================================== */
+
+const questions = [];
+
+
+/* ================= MATHEMATICS 1-50 ================= */
+
+const mathQuestions = [
+
+["2 + 3 का मान क्या है?",["4","5","6","7"],"B"],
+["5 × 4 का मान क्या है?",["15","20","25","10"],"B"],
+["10 ÷ 2 का मान क्या है?",["2","4","5","6"],"C"],
+["12 + 8 का मान क्या है?",["18","20","22","24"],"B"],
+["15 - 7 का मान क्या है?",["6","7","8","9"],"C"],
+["3² का मान क्या है?",["6","9","12","15"],"B"],
+["√49 का मान क्या है?",["6","7","8","9"],"B"],
+["2³ का मान क्या है?",["6","8","9","12"],"B"],
+["एक त्रिभुज के कोणों का योग कितना होता है?",["90°","180°","270°","360°"],"B"],
+["वर्ग की सभी भुजाएँ कैसी होती हैं?",["असमान","समान","दो समान","कोई नहीं"],"B"],
+["π का लगभग मान क्या है?",["2.14","3.14","4.14","1.14"],"B"],
+["25% को भिन्न में कैसे लिखेंगे?",["1/2","1/3","1/4","1/5"],"C"],
+["1 किलोमीटर में कितने मीटर होते हैं?",["10","100","1000","10000"],"C"],
+["100 का 10% कितना है?",["5","10","15","20"],"B"],
+["यदि x+5=10 तो x का मान?",["3","4","5","6"],"C"],
+["2x=14 तो x कितना है?",["5","6","7","8"],"C"],
+["5² का मान?",["10","15","20","25"],"D"],
+["4³ का मान?",["16","32","64","81"],"C"],
+["9 × 9 कितना है?",["72","81","90","99"],"B"],
+["144 का वर्गमूल?",["10","11","12","13"],"C"],
+["2/3 + 1/3 कितना है?",["1/3","2/3","1","4/3"],"C"],
+["5/10 का सरल रूप?",["1/2","1/3","2/3","3/4"],"A"],
+["यदि a=2,b=3 तो a+b?",["4","5","6","7"],"B"],
+["यदि x=4 तो 2x+3?",["9","10","11","12"],"C"],
+["एक वृत्त का व्यास 10 cm है तो त्रिज्या?",["2","5","10","20"],"B"],
+["समकोण कितने डिग्री का होता है?",["45°","60°","90°","180°"],"C"],
+["45° का पूरक कोण?",["35°","45°","55°","90°"],"B"],
+["60° का सम्पूरक कोण?",["90°","100°","120°","180°"],"C"],
+["आयत का क्षेत्रफल?",["लंबाई+चौड़ाई","लंबाई×चौड़ाई","2×लंबाई","2×चौड़ाई"],"B"],
+["वर्ग का क्षेत्रफल?",["4a","a²","2a","a/2"],"B"],
+["2,4,6,8 के बाद?",["9","10","11","12"],"B"],
+["3,6,9,12 के बाद?",["13","14","15","16"],"C"],
+["10 और 15 का HCF?",["3","5","10","15"],"B"],
+["10 और 15 का LCM?",["20","25","30","35"],"C"],
+["7 × 8?",["54","56","58","60"],"B"],
+["81 ÷ 9?",["7","8","9","10"],"C"],
+["16 का 50%?",["4","6","8","10"],"C"],
+["200 का 25%?",["25","40","50","75"],"C"],
+["यदि 3x=21 तो x?",["5","6","7","8"],"C"],
+["x/4=5 तो x?",["10","15","20","25"],"C"],
+["5+5×2 का मान?",["20","15","10","25"],"B"],
+["(10-4)×2?",["8","10","12","14"],"C"],
+["2+4+6+8?",["18","20","22","24"],"B"],
+["एक दर्जन में कितनी वस्तुएँ?",["10","12","14","16"],"B"],
+["त्रिभुज का क्षेत्रफल?",["bh","1/2 bh","2bh","b+h"],"B"],
+["घन का आयतन?",["a²","4a","a³","3a"],"C"],
+["यदि अनुपात 2:3 है तो कुल भाग?",["2","3","5","6"],"C"],
+["1/2 का दशमलव रूप?",["0.2","0.25","0.5","1.5"],"C"],
+["0.75 का भिन्न रूप?",["1/2","2/3","3/4","4/5"],"C"],
+["10² + 5²?",["100","125","150","25"],"B"]
+
+];
+
+
+/* ================= PHYSICS 51-75 ================= */
+
+const physicsQuestions = [
+
+["बल की SI इकाई क्या है?",["जूल","न्यूटन","वाट","पास्कल"],"B"],
+["कार्य की SI इकाई?",["न्यूटन","जूल","वाट","मीटर"],"B"],
+["शक्ति की SI इकाई?",["जूल","न्यूटन","वाट","पास्कल"],"C"],
+["विद्युत धारा की SI इकाई?",["वोल्ट","एम्पियर","ओम","वाट"],"B"],
+["विभवांतर की इकाई?",["वोल्ट","एम्पियर","ओम","जूल"],"A"],
+["प्रतिरोध की इकाई?",["वोल्ट","ओम","एम्पियर","वाट"],"B"],
+["प्रकाश की चाल लगभग कितनी है?",["3×10⁸ m/s","3×10⁶ m/s","3×10⁴ m/s","3×10² m/s"],"A"],
+["गुरुत्वीय त्वरण का मान लगभग?",["9.8 m/s²","8.9 m/s²","98 m/s²","1.8 m/s²"],"A"],
+["द्रव्यमान की SI इकाई?",["ग्राम","किलोग्राम","टन","न्यूटन"],"B"],
+["समय की SI इकाई?",["मिनट","घंटा","सेकंड","दिन"],"C"],
+["वेग का सूत्र?",["दूरी/समय","समय/दूरी","दूरी×समय","दूरी+समय"],"A"],
+["ओम का नियम?",["V=IR","P=VI","F=ma","W=Fs"],"A"],
+["ऊर्जा की SI इकाई?",["वाट","जूल","न्यूटन","ओम"],"B"],
+["दाब की SI इकाई?",["पास्कल","जूल","वाट","न्यूटन"],"A"],
+["घनत्व का सूत्र?",["mV","m/V","V/m","m+V"],"B"],
+["ध्वनि निर्वात में?",["चलती है","नहीं चलती","तेज चलती है","प्रकाश बनती है"],"B"],
+["तापमान की SI इकाई?",["सेल्सियस","केल्विन","फारेनहाइट","जूल"],"B"],
+["विद्युत शक्ति का सूत्र?",["P=VI","P=IR","P=V/I","P=I/R"],"A"],
+["लेंस की शक्ति की इकाई?",["मीटर","डायोप्टर","जूल","वाट"],"B"],
+["आवृत्ति की SI इकाई?",["हर्ट्ज","न्यूटन","वाट","मीटर"],"A"],
+["दर्पण में प्रकाश का नियम?",["परावर्तन","अपवर्तन","विक्षेपण","चालन"],"A"],
+["ताप का संचार निर्वात में किससे?",["चालन","संवहन","विकिरण","कोई नहीं"],"C"],
+["चुंबकीय क्षेत्र की SI इकाई?",["टेस्ला","जूल","वाट","पास्कल"],"A"],
+["विद्युत ऊर्जा को यांत्रिक ऊर्जा में बदलने वाला यंत्र?",["मोटर","जनरेटर","ट्रांसफॉर्मर","बैटरी"],"A"],
+["यांत्रिक ऊर्जा को विद्युत ऊर्जा में बदलने वाला?",["मोटर","जनरेटर","बल्ब","हीटर"],"B"]
+
+];
+
+
+/* ================= CHEMISTRY 76-100 ================= */
+
+const chemistryQuestions = [
+
+["जल का रासायनिक सूत्र?",["CO2","H2O","O2","H2"],"B"],
+["ऑक्सीजन का प्रतीक?",["O","Ox","C","N"],"A"],
+["हाइड्रोजन का प्रतीक?",["H","He","Hy","Hg"],"A"],
+["कार्बन का प्रतीक?",["Ca","C","Co","Cr"],"B"],
+["Na किस तत्व का प्रतीक है?",["नाइट्रोजन","सोडियम","निकेल","नियोन"],"B"],
+["ऑक्सीजन की परमाणु संख्या?",["6","7","8","9"],"C"],
+["हाइड्रोजन की परमाणु संख्या?",["1","2","3","4"],"A"],
+["कार्बन की परमाणु संख्या?",["4","6","8","12"],"B"],
+["CO2 का नाम?",["कार्बन मोनोऑक्साइड","कार्बन डाइऑक्साइड","कैल्शियम ऑक्साइड","ऑक्सीजन"],"B"],
+["NaCl का सामान्य नाम?",["चीनी","नमक","चूना","सोडा"],"B"],
+["अम्ल का pH सामान्यतः?",["7 से कम","7","7 से अधिक","14 से अधिक"],"A"],
+["उदासीन पदार्थ का pH?",["0","5","7","14"],"C"],
+["क्षार का pH सामान्यतः?",["7 से कम","7","7 से अधिक","0"],"C"],
+["HCl क्या है?",["अम्ल","क्षार","लवण","धातु"],"A"],
+["NaOH क्या है?",["अम्ल","क्षार","लवण","गैस"],"B"],
+["आवर्त सारणी में कितने समूह हैं?",["8","12","18","20"],"C"],
+["लोहे का प्रतीक?",["Ir","Fe","F","I"],"B"],
+["सोने का प्रतीक?",["Ag","Au","Gd","Go"],"B"],
+["चांदी का प्रतीक?",["Ag","Au","Si","S"],"A"],
+["पानी का क्वथनांक सामान्य दाब पर?",["0°C","50°C","100°C","200°C"],"C"],
+["पानी का हिमांक?",["0°C","10°C","50°C","100°C"],"A"],
+["वायुमंडल में सर्वाधिक गैस?",["ऑक्सीजन","नाइट्रोजन","कार्बन डाइऑक्साइड","हाइड्रोजन"],"B"],
+["CO गैस कैसी है?",["रंगहीन","नीली","हरी","पीली"],"A"],
+["जंग मुख्यतः किस धातु पर लगती है?",["सोना","लोहा","चांदी","तांबा"],"B"],
+["रासायनिक अभिक्रिया में नए पदार्थ?",["बन सकते हैं","कभी नहीं बनते","हमेशा गैस होते हैं","हमेशा ठोस होते हैं"],"A"]
+
+];
+
+
+/* Convert questions */
+
+mathQuestions.forEach(function(q,index){
+
+    questions.push({
+
+        id:index+1,
+
+        subject:"Mathematics",
+
+        question:q[0],
+
+        options:q[1],
+
+        answer:q[2]
+
+    });
+
+});
+
+
+physicsQuestions.forEach(function(q,index){
+
+    questions.push({
+
+        id:index+51,
+
+        subject:"Physics",
+
+        question:q[0],
+
+        options:q[1],
+
+        answer:q[2]
+
+    });
+
+});
+
+
+chemistryQuestions.forEach(function(q,index){
+
+    questions.push({
+
+        id:index+76,
+
+        subject:"Chemistry",
+
+        question:q[0],
+
+        options:q[1],
+
+        answer:q[2]
+
+    });
+
+});
+
+
+/* =====================================================
+   TEST VARIABLES
+===================================================== */
+
+let currentQuestion = 0;
+
+let userAnswers =
+    new Array(questions.length).fill(null);
+
+
+/*
+    NEW IMPORTANT ARRAY
+
+    false = question not visited
+    true  = question visited
+*/
+
+let visitedQuestions =
+    new Array(questions.length).fill(false);
+
+
+let timerSeconds =
+    questions.length * 72;
+
+let timerInterval = null;
+
+let testSubmitted = false;
+
+
+/* =====================================================
+   START TEST
+===================================================== */
+
+function startMockTest(){
+
+    currentQuestion = 0;
+
+    userAnswers =
+        new Array(questions.length).fill(null);
+
+    /*
+       Reset all visited questions
+    */
+
+    visitedQuestions =
+        new Array(questions.length).fill(false);
+
+    timerSeconds =
+        questions.length * 72;
+
+    testSubmitted = false;
+
+
+    document.getElementById(
+        "portal"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "resultPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "solutionsPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "testPage"
+    ).style.display = "block";
+
+
+    createQuestionGrid();
+
+    showQuestion();
+
+    startTimer();
+
+}
+
+
+/* =====================================================
+   SHOW QUESTION
+===================================================== */
+
+function showQuestion(){
+
+    const q =
+        questions[currentQuestion];
+
+
+    /*
+       IMPORTANT:
+
+       जैसे ही question दिखाई देता है,
+       उसे visited mark कर दिया जाता है।
+
+       इसलिए Next करने के बाद वह
+       Yellow दिखाई देगा अगर answer नहीं दिया।
+    */
+
+    visitedQuestions[currentQuestion] = true;
+
+
+    document.getElementById(
+        "subjectName"
+    ).innerText =
+        q.subject;
+
+
+    document.getElementById(
+        "questionNumber"
+    ).innerText =
+        "Question " +
+        (currentQuestion + 1);
+
+
+    document.getElementById(
+        "questionText"
+    ).innerText =
+        q.question;
+
+
+    document.getElementById(
+        "progressText"
+    ).innerText =
+        "Question " +
+        (currentQuestion + 1) +
+        " / " +
+        questions.length;
+
+
+    const optionsContainer =
+        document.getElementById("options");
+
+
+    optionsContainer.innerHTML = "";
+
+
+    q.options.forEach(function(option,index){
+
+        const button =
+            document.createElement("button");
+
+
+        button.className = "option";
+
+
+        const letter =
+            String.fromCharCode(65 + index);
+
+
+        button.innerText =
+            letter + ". " + option;
+
+
+        /*
+           पहले से selected answer
+        */
+
+        if(
+            userAnswers[currentQuestion]
+            === letter
+        ){
+
+            button.classList.add("selected");
+
+        }
+
+
+        button.onclick = function(){
+
+            userAnswers[currentQuestion] =
+                letter;
+
+
+            showQuestion();
+
+            updateQuestionGrid();
+
+        };
+
+
+        optionsContainer.appendChild(button);
+
+    });
+
+
+    updateQuestionGrid();
+
+}
+
+
+/* =====================================================
+   QUESTION GRID
+===================================================== */
+
+function createQuestionGrid(){
+
+    const grid =
+        document.getElementById(
+            "questionGrid"
+        );
+
+
+    grid.innerHTML = "";
+
+
+    questions.forEach(function(q,index){
+
+        const button =
+            document.createElement("button");
+
+
+        button.className = "q-btn";
+
+
+        button.innerText =
+            index + 1;
+
+
+        button.onclick = function(){
+
+            currentQuestion = index;
+
+            showQuestion();
+
+            updateQuestionGrid();
+
+        };
+
+
+        grid.appendChild(button);
+
+    });
+
+
+    updateQuestionGrid();
+
+}
+
+
+/* =====================================================
+   UPDATE QUESTION COLORS
+===================================================== */
+
+function updateQuestionGrid(){
+
+    const buttons =
+        document.querySelectorAll(".q-btn");
+
+
+    buttons.forEach(function(btn,index){
+
+        /*
+           पहले सभी status हटाओ
+        */
+
+        btn.classList.remove(
+            "done",
+            "visited",
+            "current"
+        );
+
+
+        /*
+           Answer दिया है
+           = GREEN
+        */
+
+        if(
+            userAnswers[index] !== null
+        ){
+
+            btn.classList.add("done");
+
+        }
+
+
+        /*
+           Answer नहीं दिया लेकिन
+           question देखा है
+           = YELLOW
+        */
+
+        else if(
+            visitedQuestions[index]
+        ){
+
+            btn.classList.add("visited");
+
+        }
+
+
+        /*
+           Current question
+           = BLUE
+
+           यह आखिर में लगाया गया है,
+           इसलिए current question
+           हमेशा blue रहेगा।
+        */
+
+        if(
+            index === currentQuestion
+        ){
+
+            btn.classList.add("current");
+
+        }
+
+    });
+
+}
+
+
+/* =====================================================
+   NEXT QUESTION
+===================================================== */
+
+function nextQuestion(){
+
+    if(
+        currentQuestion <
+        questions.length - 1
+    ){
+
+        currentQuestion++;
+
+        showQuestion();
+
+    }
+
+}
+
+
+/* =====================================================
+   PREVIOUS QUESTION
+===================================================== */
+
+function previousQuestion(){
+
+    if(
+        currentQuestion > 0
+    ){
+
+        currentQuestion--;
+
+        showQuestion();
+
+    }
+
+}
+
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+function startTimer(){
+
+    clearInterval(timerInterval);
+
+
+    updateTimerDisplay();
+
+
+    timerInterval =
+        setInterval(function(){
+
+            if(timerSeconds <= 0){
+
+                clearInterval(timerInterval);
+
+                alert(
+                    "Time समाप्त हो गया। Test automatically submit हो रहा है."
+                );
+
+                submitTest(true);
+
+                return;
+            }
+
+
+            timerSeconds--;
+
+            updateTimerDisplay();
+
+        },1000);
+
+}
+
+
+function updateTimerDisplay(){
+
+    const hours =
+        Math.floor(
+            timerSeconds / 3600
+        );
+
+
+    const minutes =
+        Math.floor(
+            (timerSeconds % 3600) / 60
+        );
+
+
+    const seconds =
+        timerSeconds % 60;
+
+
+    document.getElementById(
+        "timer"
+    ).innerText =
+
+        String(hours).padStart(2,"0")
+        + ":" +
+
+        String(minutes).padStart(2,"0")
+        + ":" +
+
+        String(seconds).padStart(2,"0");
+
+}
+
+
+/* =====================================================
+   SUBMIT TEST
+===================================================== */
+
+function submitTest(autoSubmit=false){
+
+    if(
+        !autoSubmit &&
+        !confirm(
+            "क्या आप test submit करना चाहते हैं?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    clearInterval(timerInterval);
+
+    testSubmitted = true;
+
+
+    let correct = 0;
+
+    let wrong = 0;
+
+    let unattempted = 0;
+
+
+    questions.forEach(function(q,index){
+
+        const answer =
+            userAnswers[index];
+
+
+        if(answer === null){
+
+            unattempted++;
+
+        }
+
+        else if(answer === q.answer){
+
+            correct++;
+
+        }
+
+        else{
+
+            wrong++;
+
+        }
+
+    });
+
+
+    const percentage =
+        (
+            correct /
+            questions.length
+        ) * 100;
+
+
+    document.getElementById(
+        "testPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "resultPage"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "finalScore"
+    ).innerText =
+        correct +
+        " / " +
+        questions.length;
+
+
+    document.getElementById(
+        "correctCount"
+    ).innerText =
+        correct;
+
+
+    document.getElementById(
+        "wrongCount"
+    ).innerText =
+        wrong;
+
+
+    document.getElementById(
+        "unattemptedCount"
+    ).innerText =
+        unattempted;
+
+
+    document.getElementById(
+        "percentageText"
+    ).innerText =
+        "Percentage: " +
+        percentage.toFixed(2) +
+        "%";
+
+}
+
+
+/* =====================================================
+   SOLUTIONS
+===================================================== */
+
+function showSolutions(){
+
+    document.getElementById(
+        "resultPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "solutionsPage"
+    ).style.display = "block";
+
+
+    const container =
+        document.getElementById(
+            "solutionsContainer"
+        );
+
+
+    container.innerHTML = "";
+
+
+    questions.forEach(function(q,index){
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "solution-card";
+
+
+        const correctIndex =
+            q.answer.charCodeAt(0) -
+            65;
+
+
+        const correctText =
+            q.options[correctIndex];
+
+
+        let userText =
+            "Not Attempted";
+
+
+        if(
+            userAnswers[index] !== null
+        ){
+
+            const userIndex =
+                userAnswers[index].charCodeAt(0)
+                - 65;
+
+
+            userText =
+                userAnswers[index] +
+                ". " +
+                q.options[userIndex];
+
+        }
+
+
+        card.innerHTML = `
+
+            <h3>
+                Q${index + 1}.
+                ${q.subject}
+            </h3>
+
+            <p>
+                <b>${q.question}</b>
+            </p>
+
+            <p class="correct-answer">
+                Correct Answer:
+                ${q.answer}. ${correctText}
+            </p>
+
+            <p>
+                Your Answer:
+                ${userText}
+            </p>
+
+            <p class="solution-text">
+                सही उत्तर:
+                ${correctText}
+            </p>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+   BACK TO RESULT
+===================================================== */
+
+function backToResult(){
+
+    document.getElementById(
+        "solutionsPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "resultPage"
+    ).style.display = "block";
+
+}
+
+
+/* =====================================================
+   BACK TO PORTAL
+===================================================== */
+
+function backToPortal(){
+
+    clearInterval(timerInterval);
+
+
+    document.getElementById(
+        "resultPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "solutionsPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "testPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "portal"
+    ).style.display = "block";
+
+}
+
+
+/* =====================================================
+   COMING SOON
+===================================================== */
+
+function showComingSoon(name){
+
+    alert(
+        name +
+        " section जल्द ही उपलब्ध होगा."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
